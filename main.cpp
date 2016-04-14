@@ -7,17 +7,37 @@ void drawCharSquare(char **square, int n);
 
 int main(int argc, char **argv)
 {
-	int n;
-	drawCharSquare(charSquare(n), n);	
+	srand(argc==3 ? atoi(argv[2]):time(NULL));
+	if(argc<2) printf("Za mala ilosc argumentow");
+	else{
+	int n=atoi(argv[1]);
+	drawCharSquare(charSquare(n), n);}
 }
 
 char **charSquare(int n)
 {
-	char **square;
+	char **square=new char * [n];
+	for(int i=0;i<n;i++)
+		{square[i]=new char [n];}
+
+	for(int i=0;i<n;i++)
+	{
+		for(int j=0;j<n;j++)
+		{
+			square[i][j]=rand()%('z'-'a')+'a';
+		}
+	}
 	return square;
 }
 
 void drawCharSquare(char **square, int n)
 {
-
+	for(int i=0;i<n;i++)
+	{
+		for(int j=0;j<n;j++)
+		{
+			printf("%c ", square[i][j]);
+		}
+		printf("\n");
+	}
 }
